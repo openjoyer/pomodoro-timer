@@ -1,0 +1,28 @@
+{
+  "name": "pomodoro-timer",
+  "displayName": "Simple Pomodoro Timer",
+  "description": "Простой таймер 25 минут в статус-баре",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pomodoro.toggle",
+        "title": "🍅 Pomodoro Toggle"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "pomodoro.toggle",
+        "key": "cmd+d"
+      }
+    ]
+  }
+}
