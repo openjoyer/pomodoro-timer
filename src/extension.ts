@@ -8,7 +8,6 @@ let isPaused = false;
 let message : vscode.Disposable;
 
 export function activate(context: vscode.ExtensionContext) {
-    
     statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
     statusBar.command = 'pomodoro.toggle';
     statusBar.text = '🍅 25:00';
@@ -62,7 +61,11 @@ function pause() {
 }
 
 function finish() {
-    pause();
+    isRunning = false;
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
     vscode.window.showInformationMessage('🎉 Таймер завершён! Перерыв 5 минут');
     seconds = 25 * 60;
     updateDisplay();
