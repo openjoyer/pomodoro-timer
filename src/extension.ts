@@ -79,6 +79,7 @@ function updateDisplay() {
 }
 
 export function deactivate() {
+    message.dispose();
     if (timer) {
         clearInterval(timer);
     }

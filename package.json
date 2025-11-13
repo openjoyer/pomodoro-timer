@@ -21,8 +21,18 @@
     "keybindings": [
       {
         "command": "pomodoro.toggle",
-        "key": "cmd+d"
+        "key": "ctrl+d",
+        "mac": "cmd+d"
       }
     ]
+  },
+  "scripts": {
+      "compile": "tsc -p ./",
+      "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "18.x",
+    "typescript": "^5.3.3"
   }
 }
