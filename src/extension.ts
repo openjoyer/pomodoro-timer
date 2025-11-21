@@ -7,6 +7,10 @@ let isRunning = false;
 let isPaused = false;
 let message : vscode.Disposable;
 
+/**
+ * Функция активации расширения (вызывается при запуске VS Code)
+ * Параметры: context - контекст расширения для управления подписками и ресурсами
+ */
 export function activate(context: vscode.ExtensionContext) {
     statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
     statusBar.command = 'pomodoro.toggle';
@@ -25,6 +29,9 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(toggle, statusBar);
 }
 
+/**
+ * Запускает таймер обратного отсчёта
+ */
 function start() {
     isRunning = true;
 	isPaused = false;
@@ -44,6 +51,9 @@ function start() {
     }, 1000);
 }
 
+/**
+ * Ставит таймер на паузу (останавливает отсчёт)
+ */
 function pause() {
     isRunning = false;
 	isPaused = true;
@@ -60,6 +70,9 @@ function pause() {
     }
 }
 
+/**
+ * Завершает сессию таймера (показывает уведомление и сбрасывает время)
+ */
 function finish() {
     isRunning = false;
     if (timer) {
@@ -71,6 +84,10 @@ function finish() {
     updateDisplay();
 }
 
+/**
+ * Обновляет отображение таймера в статус-баре
+ * Вычисляет минуты и секунды, выбирает иконку и форматирует текст
+ */
 function updateDisplay() {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -81,6 +98,10 @@ function updateDisplay() {
     statusBar.text = `${icon} ${mins}:${secs.toString().padStart(2, '0')}`;
 }
 
+/**
+ * Функция деактивации расширения (вызывается при выключении)
+ * Очищает ресурсы и останавливает таймер
+ */
 export function deactivate() {
     message.dispose();
     if (timer) {
